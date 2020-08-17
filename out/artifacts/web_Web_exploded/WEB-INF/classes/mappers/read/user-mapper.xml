@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wipe.healthy.core.dao.read.UserReadDao">
+
+    <sql id="user">
+        id,account_id,sex,name,major,height,weight,heart_rate,pulmonary,food_habits,native_place,birthday,`describe`
+    </sql>
+
+
+    <select id="findById" parameterType="java.lang.Integer" resultType="com.wipe.healthy.core.model.User">
+        SELECT 
+        <include refid="user"/>
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByAccountId" parameterType="java.lang.Integer" resultType="com.wipe.healthy.core.model.User">
+        SELECT
+        <include refid="user"/>
+        FROM user
+        WHERE account_id = #{id}
+    </select>
+
+    <select id="list" parameterType="java.util.HashMap" resultType="com.wipe.healthy.core.model.User">
+        SELECT
+        <include refid="user"/>
+        FROM user
+
+    </select>
+
+    <select id="batchQuery" parameterType="java.util.HashSet" resultType="com.wipe.healthy.core.model.User">
+        SELECT
+        <include refid="user"/>
+        FROM user
+        <where>
+             id IN
+            <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
+             #{id}
+            </foreach>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,5 @@
+1.在 mysql 软件中执行healthy.sql文件
+
+2.在tomcat服务器中， 把healthy-info.war 复制到ROOT目录下，重启tomcat服务器
+
+3.访问ip+tomcat端口号即可访问项目。
